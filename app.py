@@ -1,6 +1,7 @@
 import slack
 import os
 import json
+import requests
 from flask import Flask, request, make_response, Response
 
 # Your app's Slack bot user token
@@ -26,9 +27,14 @@ def base():
 def commands():
     data = request.form
     print (data)
-    response = client.chat_postMessage(
-        channel='#techathon-jellobot',
-        text=data)
+    jello_json = {
+        "replace_original": "true",
+        "text": "Thanks for your request, we'll process it and get back to you."
+    }
+    requests.post(url=data["response_url"], data=jello_json)
+    # response = client.chat_postMessage(
+    #     channel='#techathon-jellobot',
+    #     text=data)
     return make_response({}, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
