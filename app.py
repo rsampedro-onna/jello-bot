@@ -36,26 +36,14 @@ def commands():
         "blocks":[
             {
                 "type": "section",
+                "fallback": "Failed to Jello",
+                "callback_id": "start_jello",
                 "text": {
                     "type": "mrkdwn",
                     "text": "A message *with some bold text* and _some italicized text_."
                 },
-                "actions": [
-                    {
-                        "name": "game",
-                        "text": "Chess",
-                        "type": "button",
-                        "value": "chess"
-                    },
-                    {
-                        "name": "game",
-                        "text": "Falken's Maze",
-                        "type": "button",
-                        "value": "maze"
-                    }
-                ]
             }
-        ],
+        ]
         # "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
@@ -97,7 +85,7 @@ def commands():
             }
         ]
     }
-    requests.post(url=data["response_url"], data=alt)
+    # requests.post(url=data["response_url"], data=alt)
     # response = client.chat_postMessage(
     #     channel='#techathon-jellobot',
     #     text=data)
@@ -107,7 +95,11 @@ def commands():
 def interactive():
     data = request.form
     print(data)
-    return make_response({}, 200)
+    response = {
+        "replace_original": "true",
+        "text": "Thanks for your request, we'll process it and get back to you."
+    }
+    return make_response(response, 200)
 
 
 if __name__ == '__main__':
