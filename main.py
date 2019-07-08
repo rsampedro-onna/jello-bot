@@ -29,6 +29,11 @@ response = client.chat_postMessage(
     as_user=True)
 
 app = Flask(__name__)
+
+@app.route("/")
+def base():
+    return make_response("Hello there")
+
 app.run()
 
 # assert response["ok"]
