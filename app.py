@@ -1,6 +1,8 @@
 import slack
 import os
 import json
+from pprint import pprint
+
 import requests
 from flask import Flask, request, make_response, Response
 
@@ -26,11 +28,12 @@ def base():
 @app.route("/slack/commands", methods=["POST"])
 def commands():
     data = request.form
+    pprint(request)
     print (data)
     jello_json = {
         "replace_original": "true",
         "response_type": "in_channel",
-        "as_user":"false",
+        "as_user": "false",
         "username": data["user_name"],
         "blocks":[
             {
@@ -44,16 +47,6 @@ def commands():
         # "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
-       "options": [
-           {
-               "text": "Cappuccino",
-               "value": "cappuccino"
-           },
-           {
-               "text": "Latte",
-               "value": "latte"
-           }
-       ]
     }
     requests.post(url=data["response_url"], data=jello_json)
     # response = client.chat_postMessage(
@@ -63,8 +56,8 @@ def commands():
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
-    form_json = json.loads(request.form["payload"])
-    print (form_json)
+    data = request.form
+    print(data)
     return make_response({}, 200)
 
 
