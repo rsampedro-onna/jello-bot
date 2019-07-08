@@ -34,7 +34,7 @@ app = Flask(__name__)
 def base():
     return make_response("Hello there")
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     app.run("0.0.0.0")
 
 # assert response["ok"]
