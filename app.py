@@ -31,11 +31,27 @@ def commands():
         "replace_original": "true",
         "text": "Thanks for your request, we'll process it and get back to you."
     }
-    requests.post(url=data["response_url"], data=jello_json)
+    alt = {
+    "actions": [
+        {
+            "name": "game",
+            "text": "Chess",
+            "type": "button",
+            "value": "chess"
+        },
+        {
+            "name": "game",
+            "text": "Falken's Maze",
+            "type": "button",
+            "value": "maze"
+        }
+    ]
+}
+    # requests.post(url=data["response_url"], data=jello_json)
     # response = client.chat_postMessage(
     #     channel='#techathon-jellobot',
     #     text=data)
-    return make_response(jello_json, 200)
+    return make_response(alt, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
