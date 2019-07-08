@@ -93,7 +93,7 @@ def commands():
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
-    data = request.form.to_dict()
+    data = json.loads(request.form.to_dict()["payload"])
     print(data)
     # response = {
     #     "replace_original": "true",
