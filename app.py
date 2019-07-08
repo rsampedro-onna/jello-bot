@@ -94,7 +94,7 @@ def commands():
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
     data = request.form
-    print(data)
+    print(data[0])
     response = {
         "replace_original": "true",
         "response_type": "in_channel",
