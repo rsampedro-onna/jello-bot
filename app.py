@@ -30,6 +30,8 @@ def commands():
     jello_json = {
         "replace_original": "true",
         "response_type": "in_channel",
+        "as_user":"false",
+        "username": data["user_name"],
         "blocks":[
             {
                 "type": "section",
