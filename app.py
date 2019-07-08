@@ -30,7 +30,16 @@ def commands():
     jello_json = {
         "replace_original": "true",
         "response_type": "in_channel",
-        "text": "Thanks for your request, we'll process it and get back to you."
+        "blocks":[
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "A message *with some bold text* and _some italicized text_."
+                }
+            }
+        ],
+        # "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
        "options": [
