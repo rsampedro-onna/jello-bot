@@ -102,14 +102,15 @@ def interactive():
         "username": data["user_name"],
         "text": "Thanks for your request, we'll process it and get back to you."
     }
-    client.chat_update(channel=data["channel"]["id"],
+    x = client.chat_update(channel=data["channel"]["id"],
                        ts=data["message_ts"],
                        text="Updated now",
                        as_user=False,
                        replace_original= True,
                        username=data["user"]["name"])
 
-    # return make_response(response, 200)
+    print (x)
+    return make_response({}, 200)
 
 
 if __name__ == '__main__':
