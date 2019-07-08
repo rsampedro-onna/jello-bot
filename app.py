@@ -24,7 +24,7 @@ def base():
 
 @app.route("/slack/commands", methods=["POST"])
 def commands():
-    data = request.data
+    data = request.form["payload"]
     print (data)
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
