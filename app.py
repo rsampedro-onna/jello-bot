@@ -104,10 +104,10 @@ def interactive():
     # }
     x = client.chat_update(channel=data["channel"]["id"],
                        ts=data["action_ts"],
-                       text="Updated now",
-                       as_user=False,
-                       replace_original= True,
-                       username=data["user"]["name"])
+                       text="Updated now")
+                       #as_user=False,
+                       #replace_original= True,
+                       #username=data["user"]["name"])
 
     print (x)
     return make_response({}, 200)
