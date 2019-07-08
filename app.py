@@ -9,7 +9,7 @@ from flask import Flask, request, make_response, Response
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 
-client = slack.WebClient(token="xoxb-13246082566-675986705106-93UhYcHOLvCDjd4CTmPyr5BT")
+client = slack.WebClient(token=SLACK_BOT_TOKEN)
 
 # Helper for verifying that requests came from Slack
 def verify_slack_token(request_token):
@@ -40,7 +40,21 @@ def commands():
                 "text": {
                     "type": "mrkdwn",
                     "text": "A message *with some bold text* and _some italicized text_."
-                }
+                },
+                "actions": [
+                    {
+                        "name": "game",
+                        "text": "Chess",
+                        "type": "button",
+                        "value": "chess"
+                    },
+                    {
+                        "name": "game",
+                        "text": "Falken's Maze",
+                        "type": "button",
+                        "value": "maze"
+                    }
+                ]
             }
         ],
         # "text": "Thanks for your request, we'll process it and get back to you."
