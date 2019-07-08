@@ -24,10 +24,12 @@ def base():
 
 @app.route("/slack/commands", methods=["POST"])
 def commands():
-    print (request)
+    data = request.data
+    dataDict = json.loads(data)
+    print (dataDict)
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
-        text=request)
+        text=data)
     return make_response(200)
 
 @app.route("/slack/interactive", methods=["POST"])
