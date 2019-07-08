@@ -97,6 +97,9 @@ def interactive():
     print(data)
     response = {
         "replace_original": "true",
+        "response_type": "in_channel",
+        "as_user": "false",
+        "username": data["user_name"],
         "text": "Thanks for your request, we'll process it and get back to you."
     }
     return make_response(response, 200)
