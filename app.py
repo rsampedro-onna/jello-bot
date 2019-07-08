@@ -1,7 +1,6 @@
 import slack
 import os
 import json
-from pprint import pprint
 
 import requests
 from flask import Flask, request, make_response, Response
@@ -28,7 +27,7 @@ def base():
 @app.route("/slack/commands", methods=["POST"])
 def commands():
     data = request.form
-    pprint(request)
+    print(json.dumps(request, indent=4))
     print (data)
     jello_json = {
         "replace_original": "true",
