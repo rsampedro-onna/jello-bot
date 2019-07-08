@@ -103,7 +103,7 @@ def interactive():
     #     "text": "Thanks for your request, we'll process it and get back to you."
     # }
     x = client.chat_update(channel=data["channel"]["id"],
-                       ts=data["action_ts"],
+                       ts=data["message_ts"],
                        text="Updated now")
                        #as_user=False,
                        #replace_original= True,
