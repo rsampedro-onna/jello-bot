@@ -24,18 +24,18 @@ def base():
 
 @app.route("/slack/commands", methods=["POST"])
 def commands():
-    data = request.form["payload"]
+    data = request.form
     print (data)
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
         text=data)
-    return make_response(200)
+    return make_response({}, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
     form_json = json.loads(request.form["payload"])
     print (form_json)
-    return make_response(200)
+    return make_response({}, 200)
 
 
 if __name__ == '__main__':
