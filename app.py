@@ -28,6 +28,7 @@ def commands():
     print (data)
     jello_json = {
         "replace_original": "true",
+        "response_type": "in_channel",
         "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
@@ -46,7 +47,7 @@ def commands():
     # response = client.chat_postMessage(
     #     channel='#techathon-jellobot',
     #     text=data)
-    return Response(json.dumps(alt), mimetype="application/json")
+    return make_response(jello_json, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
