@@ -1,5 +1,6 @@
 import slack
 import os
+import json
 from flask import Flask, request, make_response, Response
 
 # Your app's Slack bot user token
@@ -15,27 +16,26 @@ def verify_slack_token(request_token):
         print("Received {} but was expecting {}".format(request_token, SLACK_VERIFICATION_TOKEN))
     return make_response("Request contains invalid Slack verification token", 403)
 
-response = client.chat_postMessage(
-    channel='#techathon-jellobot',
-    blocks=[
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "Danny Torrence left the following review for your property:"
-            }
-        }
-    ],
-    as_user=True)
-
 app = Flask(__name__)
 
 @app.route("/")
 def base():
     return make_response("Hello there")
 
+@app.route("/slack/commands")
+def commands():
+    print (request)
+    response = client.chat_postMessage(
+        channel='#techathon-jellobot',
+        text=request)
+    return make_response(200)
+
+@app.route("/slack/interactive")
+def interactive():
+    form_json = json.loads(request.form["payload"])
+    print (form_json)
+    return make_response(200)
+
+
 if __name__ == '__main__':
     app.run("0.0.0.0")
-
-# assert response["ok"]
-# assert response["message"]["text"] == "Hello world!"
