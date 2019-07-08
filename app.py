@@ -22,7 +22,7 @@ app = Flask(__name__)
 def base():
     return make_response("Hello there")
 
-@app.route("/slack/commands", methods="POST")
+@app.route("/slack/commands", methods=["POST"])
 def commands():
     print (request)
     response = client.chat_postMessage(
@@ -30,7 +30,7 @@ def commands():
         text=request)
     return make_response(200)
 
-@app.route("/slack/interactive", methods="POST")
+@app.route("/slack/interactive", methods=["POST"])
 def interactive():
     form_json = json.loads(request.form["payload"])
     print (form_json)
