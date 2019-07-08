@@ -31,20 +31,16 @@ def commands():
         "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
-        "actions": [
-            {
-                "name": "game",
-                "text": "Chess",
-                "type": "button",
-                "value": "chess"
-            },
-            {
-                "name": "game",
-                "text": "Falken's Maze",
-                "type": "button",
-                "value": "maze"
-            }
-        ]
+       "options": [
+           {
+               "text": "Cappuccino",
+               "value": "cappuccino"
+           },
+           {
+               "text": "Latte",
+               "value": "latte"
+           }
+       ]
     }
     # requests.post(url=data["response_url"], data=jello_json)
     # response = client.chat_postMessage(
