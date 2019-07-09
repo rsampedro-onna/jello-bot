@@ -86,7 +86,7 @@ def commands():
         channel='#techathon-jellobot',
         as_user= "false",
         username= user["profile"]["display_name"] or user["profile"]["real_name"] or "Missing Username",
-        image_url= user["profile"]["image_original"],
+        icon_url= user["profile"]["image_original"],
         text="I've just been jelloed")
     print (response)
     return make_response(jello_json, 200)
