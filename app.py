@@ -78,7 +78,7 @@ def commands():
     # requests.post(url=data["response_url"], data=alt)
     user = client.users_info(
         user=data.get("user_id")
-    )
+    ).get("user")
 
     print (user)
 
