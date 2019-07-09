@@ -79,6 +79,9 @@ def commands():
     user = client.users_info(
         user=data.get("user_id")
     )
+
+    print (user)
+
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
         as_user= "false",
