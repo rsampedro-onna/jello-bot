@@ -30,20 +30,10 @@ def commands():
     print (data)
     jello_json = {
         "replace_original": "true",
-        "response_type": "in_channel",
+        "response_type": "ephemeral",
         "as_user": "false",
         "username": data["user_name"],
-        "blocks":[
-            {
-                "type": "section",
-                "fallback": "Failed to Jello",
-                "callback_id": "start_jello",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "A message *with some bold text* and _some italicized text_."
-                },
-            }
-        ]
+        "text": "ecto1"
         # "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
@@ -89,7 +79,7 @@ def commands():
     # response = client.chat_postMessage(
     #     channel='#techathon-jellobot',
     #     text=data)
-    return make_response(alt, 200)
+    return make_response(jello_json, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
