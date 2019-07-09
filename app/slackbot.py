@@ -57,7 +57,7 @@ def jello(data):
     author = None
 
     if input_text != '':
-        first_word = input_text.split()[1]
+        first_word = input_text.split()[0]
         if first_word.startswith("@"):
             author = first_word
 
