@@ -26,7 +26,7 @@ def base():
 
 @app.route("/slack/commands", methods=["POST"])
 def commands():
-    data = request.form
+    data = request.form[0]
     print (data)
     jello_json = {
         "replace_original": "true",
