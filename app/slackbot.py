@@ -114,5 +114,5 @@ def __send_jello(user, user_id):
 def __get_random_jello_data(jello_list):
     max = len(jello_list.get("jello"))
     index = random.randint(0, max-1)
-    logging.DEBUG(f"jello {index} out of {max}")
+    logging.DEBUG(f"jello {str(index)} out of {str(max)}")
     return jello_list.get('jello')[index]
