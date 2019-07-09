@@ -26,13 +26,13 @@ def base():
 
 @app.route("/slack/commands", methods=["POST"])
 def commands():
-    data = request.get_json()
+    data = request.form
     print (data)
     jello_json = {
         "replace_original": "true",
         "response_type": "ephemeral",
         "as_user": "false",
-        "username": data["user_name"],
+        "username": data.get("user_name"),
         "text": "ecto1"
         # "text": "Thanks for your request, we'll process it and get back to you."
     }
@@ -76,9 +76,12 @@ def commands():
         ]
     }
     # requests.post(url=data["response_url"], data=alt)
-    # response = client.chat_postMessage(
-    #     channel='#techathon-jellobot',
-    #     text=data)
+    response = client.chat_postMessage(
+        channel='#techathon-jellobot',
+        as_user= "false",
+        username= data.get("user_name") or "Missing Username",
+        text=data)
+    print (response)
     return make_response(jello_json, 200)
 
 @app.route("/slack/interactive", methods=["POST"])
