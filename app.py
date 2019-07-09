@@ -76,10 +76,14 @@ def commands():
         ]
     }
     # requests.post(url=data["response_url"], data=alt)
+    user = client.users_info(
+        user=data.get("user_name")
+    )
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
         as_user= "false",
-        username= data.get("user_name") or "Missing Username",
+        username= user["profile"]["display_name"] or user["profile"]["real_name"] or "Missing Username",
+        image_url= user["profile"]["image_original"],
         text=data)
     print (response)
     return make_response(jello_json, 200)
