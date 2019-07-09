@@ -4,6 +4,7 @@ import random
 import logging
 
 from flask import Blueprint, request, make_response, current_app
+
 client = None
 
 blueprint = Blueprint('slackbot', __name__)
@@ -12,6 +13,7 @@ JELLO_PATH = 'jello_json'
 
 with open(f'{JELLO_PATH}/default.json') as f:
     default_jellos = json.load(f)
+
 
 @blueprint.record
 def record(setup_state):
@@ -51,6 +53,8 @@ def jello(data):
     user_id = data.get("user_id")
     input_text = data.get('text', None)
 
+    logging.debug(f"Jelloing user with id ({user_id}) with text \"{input_text}\"")
+
     user = client.users_info(
         user=user_id
     ).get("user")
@@ -77,7 +81,6 @@ def jello(data):
     __send_jello(user, user_id)
 
     return make_response(internal_json, 200)
-
 
 
 def __send_jello(user, user_id):
@@ -114,6 +117,6 @@ def __send_jello(user, user_id):
 
 def __get_random_jello_data(jello_list):
     max = len(jello_list.get("jello"))
-    index = random.randint(0, max-1)
+    index = random.randint(0, max - 1)
     logging.debug(f"jello {index} out of {max}")
     return jello_list.get('jello')[index]
