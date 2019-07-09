@@ -113,4 +113,4 @@ def __send_jello(user, user_id):
 def __get_random_jello_data(jello_list):
     max = len(jello_list.get("jello"))
     index = random.randint(0, max)
-    return jello_list[index]
+    return jello_list.get('jello')[index]
