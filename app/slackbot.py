@@ -81,6 +81,7 @@ def jello(data):
 
 
 def __send_jello(user, user_id):
+    destination_channel = current_app.config.get('JELLO_CHANNEL')
     # External message
     try:
         with open(f'{JELLO_PATH}/{user_id}.json') as f:
@@ -96,7 +97,7 @@ def __send_jello(user, user_id):
 
     if jello_data.get("text"):
         client.chat_postMessage(
-            channel='#techathon-jellobot',
+            channel=destination_channel,
             as_user="false",
             username=user["profile"]["display_name"] or user["profile"]["real_name"] or "Missing Username",
             icon_url=user["profile"]["image_original"],
@@ -104,7 +105,7 @@ def __send_jello(user, user_id):
 
     if jello_data.get("blocks"):
         client.chat_postMessage(
-            channel='#techathon-jellobot',
+            channel=destination_channel,
             as_user="false",
             username=user["profile"]["display_name"] or user["profile"]["real_name"] or "Missing Username",
             icon_url=user["profile"]["image_original"],

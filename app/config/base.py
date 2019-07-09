@@ -9,6 +9,8 @@ cwd = os.getcwd()
 
 SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
 
+JELLO_CHANNEL = "#techathon-jellobot"
+
 # LOGGING
 LOGGER_NAME = "%s_log" % project_name
 LOG_FILENAME = "/var/tmp/app.%s.log" % project_name
