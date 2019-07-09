@@ -33,7 +33,7 @@ def commands():
         "response_type": "ephemeral",
         "as_user": "false",
         "username": data.get("user_name"),
-        "text": "ecto1"
+        "text": "You've just been Jelloed'"
         # "text": "Thanks for your request, we'll process it and get back to you."
     }
     alt = {
@@ -77,14 +77,14 @@ def commands():
     }
     # requests.post(url=data["response_url"], data=alt)
     user = client.users_info(
-        user=data.get("user_name")
+        user=data.get("user_id")
     )
     response = client.chat_postMessage(
         channel='#techathon-jellobot',
         as_user= "false",
         username= user["profile"]["display_name"] or user["profile"]["real_name"] or "Missing Username",
         image_url= user["profile"]["image_original"],
-        text=data)
+        text="I've just been jelloed")
     print (response)
     return make_response(jello_json, 200)
 
