@@ -1,7 +1,6 @@
 import json
 import slack
 import random
-import logging
 
 from flask import Blueprint, request, make_response, current_app
 
@@ -53,7 +52,7 @@ def jello(data):
     user_id = data.get("user_id")
     input_text = data.get('text', None)
 
-    logging.debug(f"Jelloing user with id ({user_id}) with text \"{input_text}\"")
+    print(f"Jelloing user with id ({user_id}) with text \"{input_text}\"")
 
     user = client.users_info(
         user=user_id
@@ -118,5 +117,5 @@ def __send_jello(user, user_id):
 def __get_random_jello_data(jello_list):
     max = len(jello_list.get("jello"))
     index = random.randint(0, max - 1)
-    logging.debug(f"jello {index} out of {max}")
+    print(f"jello {index} out of {max}")
     return jello_list.get('jello')[index]
