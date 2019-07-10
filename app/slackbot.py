@@ -29,7 +29,7 @@ def record(setup_state):
 
 @blueprint.route('', methods=['GET'])
 def root():
-    make_response("Slack bot successfully initiated!")
+    return make_response("Slack bot successfully initiated!")
 
 
 @blueprint.route('/commands', methods=['POST'])
